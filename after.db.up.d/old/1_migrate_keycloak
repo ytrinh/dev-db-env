@@ -1,0 +1,3 @@
+cd ./keycloak/schema
+
+sql-migrate up

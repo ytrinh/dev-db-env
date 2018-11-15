@@ -1,0 +1,108 @@
+version: '3'
+services:
+  mysql:
+    image: dev-mysql:latest
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - .:/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  myadmin:
+    image: phpmyadmin/phpmyadmin:4.8
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "127.0.0.1:8081:80"
+    environment:
+      - PMA_HOST=mysql
+    volumes:
+      - .:/data
+  postgres:
+    image: dev-postgres:latest
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/data
+        #  aws:
+        #    image: localstack/localstack
+        #    restart: unless-stopped
+        #    networks:
+        #      - dev
+        #    ports:
+        #      - "4568:4568"
+        #      - "4569:4569"
+        #      - "4570:4570"
+        #      - "4572:4572"
+        #      - "4573:4573"
+        #      - "4576:4576"
+        #      - "4578:4578"
+        #      - "4571:4571"
+        #    volumes:
+        #      - .:/data
+  redis:
+    image: dev-redis:latest
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - .:/data
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "127.0.0.1:1025:1025"
+      - "127.0.0.1:8025:8025"
+    volumes:
+      - .:/data
+        #  zipkin:
+        #    image: openzipkin/zipkin
+        #    restart: unless-stopped
+        #    networks:
+        #      - dev
+        #    ports:
+        #      - "127.0.0.1:9411:9411"
+        #    volumes:
+        #      - .:/data
+        #  fluentd:
+        #    image: fluent/fluentd:v1.2
+        #    restart: unless-stopped
+        #    networks:
+        #      - dev
+        #    ports:
+        #      - "127.0.0.1:24224:24224"
+        #      - "127.0.0.1:24224:24224/udp"
+        #    volumes:
+        #      - .:/data
+        #      - ./log:/fluentd/log
+        #  rabbitmq:
+        #    image: rabbitmq:3.7-management-alpine
+        #    restart: unless-stopped
+        #    hostname: rabbitmq
+        #    networks:
+        #      - dev
+        #    ports:
+        #      - "127.0.0.1:5672:5672"
+        #      - "127.0.0.1:8082:15672"
+        #    environment:
+        #      - RABBITMQ_ERLANG_COOKIE=0123456789
+        #      - RABBITMQ_DEFAULT_USER=root
+        #      - RABBITMQ_DEFAULT_PASS=root
+        #      - RABBITMQ_DEFAULT_VHOST=/
+        #    volumes:
+        #      - .:/data
+networks:
+  dev:
+    external:
+      name: dev

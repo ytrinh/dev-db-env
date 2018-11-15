@@ -1,0 +1,5 @@
+development:
+  dialect: mysql
+  datasource: root:root@tcp(localhost:13306)/dev?charset=utf8&parseTime=true
+  dir: migrations
+  table: migrations_schema_keycloak

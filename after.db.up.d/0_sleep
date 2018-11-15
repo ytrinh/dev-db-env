@@ -1,0 +1,22 @@
+#!/bin/bash
+
+check=$(docker exec -it pedb_mysql_1 sh -c "ls -a1 /" | grep "pedb_init_done" | tr -d "\n")
+
+if [ "$check" != "" ]
+then
+    exit 0
+fi
+
+#sleep 10
+
+while ! docker exec pedb_mysql_1 mysqladmin --user=dev --password=dev --host "127.0.0.1" ping --silent &> /dev/null ; do
+    echo "Waiting for database connection..."
+    sleep 2
+done
+
+#echo "checking mysql at localhost port 3306"
+#until nc -z -v -w30 localhost 3306
+#do
+#  echo "Waiting for mysql connection..."
+#  sleep 1
+#done
