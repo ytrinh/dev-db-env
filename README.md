@@ -12,21 +12,21 @@ Prerequisite
 Initialization
 ==============
 
-- Run `make init` to initialize the DB and PE images
-- Run `make up` to bring up the PE and DB docker services
+- Run `make init` to initialize the DB images
+- Run `make up` to bring up the DB docker services
 
 Starting/Stopping
 =================
 
-- Run `make stop stop-db` to stop the docker PE and DB services
-- Run `make start-db start` to start the docker PE and DB services
+- Run `make stop stop-db` to stop the docker DB services
+- Run `make start-db start` to start the docker DB services
 
 Shutdown
 ========
 
 Bringing the DB docker images down will remove all database data.  Do this only if you want to 'refresh' the database.
 
-- Run `make down` to bring down all PE services
+- Run `make down` to bring down all non db services
 - Run `make down-db` to bring down databases
 
 Help
