@@ -1,4 +1,4 @@
-FROM postgres:11.1-alpine
+FROM postgres:11-alpine
 
 LABEL authors="Yung Trinh"
 
