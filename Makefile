@@ -90,7 +90,7 @@ logs-%:
 
 .PHONY: up-db
 up-db:
-	docker-compose -f docker-compose-db.yml -p "dev" up -d --remove-orphans
+	docker-compose -f docker-compose-db.yml -p "db" up -d --remove-orphans
 #	make after-db-up
 
 .PHONY: up-%
@@ -99,7 +99,7 @@ up-%: up-db
 
 .PHONY: down-db
 down-db: down
-	docker-compose -f docker-compose-db.yml -p "dev" down --remove-orphans
+	docker-compose -f docker-compose-db.yml -p "db" down --remove-orphans
 
 .PHONY: down-%
 down-%: 
@@ -107,7 +107,7 @@ down-%:
 
 .PHONY: start-db
 start-db: 
-	docker-compose -f docker-compose-db.yml -p "dev" start
+	docker-compose -f docker-compose-db.yml -p "db" start
 
 .PHONY: start-%
 start-%: start-db
@@ -115,7 +115,7 @@ start-%: start-db
 
 .PHONY: stop-db
 stop-db: stop
-	docker-compose -f docker-compose-db.yml -p "dev" stop
+	docker-compose -f docker-compose-db.yml -p "db" stop
 
 .PHONY: stop-%
 stop-%:

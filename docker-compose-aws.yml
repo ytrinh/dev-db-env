@@ -1,10 +1,11 @@
-version: '3'
+version: '2.4'
 services:
   localstack:
     image: localstack/localstack
     restart: unless-stopped
     networks:
       - dev
+    mem_limit: 1250M
     ports:
       - "4567-4584:4567-4584"
       - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
