@@ -9,7 +9,7 @@ dev-env-remote-master-hash=$(shell git ls-remote origin master | cut -f1)
 make-dir = ${CURDIR}
 
 # by default, ignore the following components in the 'up' and 'start' target
-GO_DEV_UP_IGNORE ?= ""
+GO_DEV_UP_IGNORE ?= "es,aws"
 
 ###
 ### build-images
@@ -185,35 +185,35 @@ dev-redis:
 
 .PHONY: mysql
 mysql:
-	docker exec -it pedb_mysql_1 /scripts/cli.sh
+	docker exec -it dev_mysql_1 /scripts/cli.sh
 
 .PHONY: mysql-sh
 mysql-sh:
-	docker exec -it pedb_mysql_1 sh
+	docker exec -it pdev_mysql_1 sh
 
 .PHONY: psql
 psql:
-	docker exec -it pedb_postgres_1 /scripts/cli.sh
+	docker exec -it dev_postgres_1 /scripts/cli.sh
 
 .PHONY: psql-sh
 psql-sh:
-	docker exec -it pedb_postgres_1 sh
+	docker exec -it dev_postgres_1 sh
 
 .PHONY: redis
 redis:
-	docker exec -it pedb_redis_1 redis-cli
+	docker exec -it dev_redis_1 redis-cli
 
 .PHONY: redis-sh
 redis-sh:
-	docker exec -it pedb_redis_1 sh
+	docker exec -it dev_redis_1 sh
 
 .PHONY: db-backup
 db-backup:
-	docker exec -it pedb_mysql_1 sh -c /scripts/backup.sh
+	docker exec -it dev_mysql_1 sh -c /scripts/backup.sh
 
 .PHONY: db-restore
 db-restore:
-	docker exec -it pedb_mysql_1 sh -c /scripts/restore.sh
+	docker exec -it dev_mysql_1 sh -c /scripts/restore.sh
 
 .PHONY: check-dev-env
 check-dev-env: 
