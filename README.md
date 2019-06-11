@@ -13,7 +13,7 @@ Initialization
 ==============
 
 - Run `make init` to initialize the DB images
-- Run `make up` to bring up the DB docker services
+- Run `make up-db` to bring up the DB docker services
 
 Starting/Stopping
 =================
