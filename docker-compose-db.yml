@@ -31,22 +31,18 @@ services:
       - "5432:5432"
     volumes:
       - ./tmp/data:/data
-        #  aws:
-        #    image: localstack/localstack
-        #    restart: unless-stopped
-        #    networks:
-        #      - dev
-        #    ports:
-        #      - "4568:4568"
-        #      - "4569:4569"
-        #      - "4570:4570"
-        #      - "4572:4572"
-        #      - "4573:4573"
-        #      - "4576:4576"
-        #      - "4578:4578"
-        #      - "4571:4571"
-        #    volumes:
-        #      - .:/data
+  pgadmin:
+    image: dpage/pgadmin4:latest 
+    restart: unless-stopped
+    networks:
+      - dev
+    ports:
+      - "127.0.0.1:8082:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dev@example.com
+      - PGADMIN_DEFAULT_PASSWORD=dev
+    volumes:
+      - ./tmp/data:/data
   redis:
     image: dev-redis:latest
     restart: unless-stopped
